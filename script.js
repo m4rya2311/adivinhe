@@ -2,8 +2,8 @@ const { useState, useEffect } = React;
 
 // Substitua estas URLs pelas URLs das suas imagens ou use caminhos locais
 const IMAGES = [
-  'https://via.placeholder.com/150?text=Foto1', // Imagem 1
-  'https://via.placeholder.com/150?text=Foto2', // Imagem 2
+  'images/01.png', // Imagem 1
+  'images/02.jpeg', // Imagem 2
   'https://via.placeholder.com/150?text=Foto3', // Imagem 3
   'https://via.placeholder.com/150?text=Foto4', // Imagem 4
   'https://via.placeholder.com/150?text=Foto5', // Imagem 5
