@@ -1,6 +1,20 @@
 const { useState, useEffect } = React;
 
-const EMOJIS = ['🎮', '🎯', '🎲', '🎪', '🎨', '🎭', '🎵', '⭐', '🔥', '💎', '🚀', '🌈'];
+// Substitua estas URLs pelas URLs das suas imagens ou use caminhos locais
+const IMAGES = [
+  'https://via.placeholder.com/150?text=Foto1', // Imagem 1
+  'https://via.placeholder.com/150?text=Foto2', // Imagem 2
+  'https://via.placeholder.com/150?text=Foto3', // Imagem 3
+  'https://via.placeholder.com/150?text=Foto4', // Imagem 4
+  'https://via.placeholder.com/150?text=Foto5', // Imagem 5
+  'https://via.placeholder.com/150?text=Foto6', // Imagem 6
+  'https://via.placeholder.com/150?text=Foto7', // Imagem 7
+  'https://via.placeholder.com/150?text=Foto8', // Imagem 8
+  'https://via.placeholder.com/150?text=Foto9', // Imagem 9
+  'https://via.placeholder.com/150?text=Foto10', // Imagem 10
+  'https://via.placeholder.com/150?text=Foto11', // Imagem 11
+  'https://via.placeholder.com/150?text=Foto12', // Imagem 12
+];
 
 function shuffleArray(array) {
   const shuffled = [...array];
@@ -18,10 +32,10 @@ function MemoryGame() {
   const [matches, setMatches] = useState(0);
 
   const initializeGame = () => {
-    const shuffledEmojis = shuffleArray(EMOJIS.concat(EMOJIS)); // Duplicar para formar os pares
-    const shuffledCards = shuffledEmojis.map((emoji, index) => ({
+    const shuffledImages = shuffleArray(IMAGES.concat(IMAGES)); // Duplicar para formar os pares
+    const shuffledCards = shuffledImages.map((image, index) => ({
       id: index,
-      emoji,
+      image,
       isFlipped: false,
       isMatched: false,
     }));
@@ -56,7 +70,7 @@ function MemoryGame() {
       const firstCard = cards.find(card => card.id === firstId);
       const secondCard = cards.find(card => card.id === secondId);
 
-      if (firstCard.emoji === secondCard.emoji) {
+      if (firstCard.image === secondCard.image) {
         const newCards = [...cards];
         newCards[firstId].isMatched = true;
         newCards[secondId].isMatched = true;
@@ -77,7 +91,7 @@ function MemoryGame() {
 
   return (
     <div>
-      <h1>Jogo da Memória</h1>
+      <h1>Jogo da Memória com Imagens</h1>
       <p>Movimentos: {moves} | Pares: {matches}</p>
       <div className="grid">
         {cards.map(card => (
@@ -86,15 +100,14 @@ function MemoryGame() {
             className={`card ${card.isFlipped ? 'flipped' : ''}`}
             onClick={() => handleCardClick(card.id)}
           >
-            <div className="emoji">{card.isFlipped || card.isMatched ? card.emoji : '❓'}</div>
+            <img src={card.isFlipped || card.isMatched ? card.image : 'https://via.placeholder.com/150'} alt="Carta" />
             <div className="back">❓</div>
           </div>
         ))}
       </div>
-      {matches === EMOJIS.length && <h2>Parabéns! Você ganhou!</h2>}
+      {matches === IMAGES.length && <h2>Parabéns! Você ganhou!</h2>}
     </div>
   );
 }
 
 ReactDOM.render(<MemoryGame />, document.getElementById('root'));
-
